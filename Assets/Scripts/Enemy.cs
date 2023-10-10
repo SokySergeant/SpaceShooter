@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        //Rotate and move towards player
         if(PlayerTrans)
         {
             Vector2 Dir = PlayerTrans.position - transform.position;
@@ -29,7 +30,10 @@ public class Enemy : MonoBehaviour
     {
         while(true)
         {
-            Instantiate(Projectile, transform.position, transform.rotation);
+            if(PlayerTrans)
+            {
+                Instantiate(Projectile, transform.position, transform.rotation);
+            }
             yield return new WaitForSeconds(TimeBetweenShots);
         }
     }

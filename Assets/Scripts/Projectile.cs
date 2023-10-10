@@ -20,8 +20,10 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
+        //Move
         transform.position += transform.up * Speed * Time.deltaTime;
 
+        //Kill overlapping enemy
         Collider.OverlapCollider(CFilter, Cols);
         if(Cols.Count > 0)
         {
