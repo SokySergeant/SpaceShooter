@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private float TimeBetweenSpawns = 1f;
     [SerializeField] private float TimeDeviationBetweenSpawns = 0.5f;
+    [SerializeField] private float SpawnIncreaseRate = 0.01f;
+    private float CurrentTimeBetweenSpawns = 0f;
 
     [SerializeField] private float SpawnRadius = 5f;
     [SerializeField] private float SpawnRadiusDeviation = 1f;
@@ -15,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        CurrentTimeBetweenSpawns = TimeBetweenSpawns;
         StartCoroutine(SpawnEnemies());
     }
 
@@ -30,7 +33,14 @@ public class EnemySpawner : MonoBehaviour
                 TempEnemy.GetComponent<Enemy>().PlayerTrans = PlayerTrans;
             }
 
-            yield return new WaitForSeconds(TimeBetweenSpawns + Random.Range(-1f, 1f) * TimeDeviationBetweenSpawns);
+            //Increase how fast enemies spawn
+            if(CurrentTimeBetweenSpawns - SpawnIncreaseRate > 0f)
+            {
+                CurrentTimeBetweenSpawns -= SpawnIncreaseRate;
+            }
+            float CalculatedTime = CurrentTimeBetweenSpawns + (Random.Range(-1f, 1f) * TimeDeviationBetweenSpawns) * (CurrentTimeBetweenSpawns / TimeBetweenSpawns);
+
+            yield return new WaitForSeconds(CalculatedTime);
         }
     }
 }
