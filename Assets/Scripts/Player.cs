@@ -7,9 +7,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float Speed = 1f;
     [SerializeField] private GameObject Projectile;
 
+    private Health Health;
+
     void Start()
     {
         Rb = GetComponent<Rigidbody2D>();
+        Health = GetComponent<Health>();
     }
 
     public void OnMove(InputAction.CallbackContext Ctx)
@@ -29,6 +32,14 @@ public class Player : MonoBehaviour
         if(Ctx.started)
         {
             Instantiate(Projectile, transform.position, transform.rotation);
+        }
+    }
+
+    public void OnGodmode(InputAction.CallbackContext Ctx)
+    {
+        if(Ctx.started)
+        {
+            Health.ToggleGodmode();
         }
     }
 }
