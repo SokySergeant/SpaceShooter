@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text GodmodeText;
     [SerializeField] private Slider HealthSlider;
+    [SerializeField] private GameObject GameOverMenu;
 
     public bool Godmode = false;
 
@@ -36,7 +37,8 @@ public class Health : MonoBehaviour
         if(CurrentHealth == 0)
         {
             Time.timeScale = 0f;
-            SceneManager.LoadScene("MenuScene");
+            GameOverMenu.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 
