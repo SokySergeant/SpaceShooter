@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class Health : MonoBehaviour
         CurrentHealth = MaxHeath;
         HealthSlider.maxValue = MaxHeath;
         HealthSlider.value = CurrentHealth;
+
+        Time.timeScale = 1f;
     }
 
     public void UpdateHealth(int Hp)
@@ -29,7 +30,8 @@ public class Health : MonoBehaviour
         //death
         if(CurrentHealth == 0)
         {
-            Debug.Log("DIED!");
+            Time.timeScale = 0f;
+            SceneManager.LoadScene("MenuScene");
         }
     }
 }
