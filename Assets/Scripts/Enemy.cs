@@ -5,14 +5,21 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float Speed = 2f;
-    [SerializeField] private float TimeBetweenShots = 1f;
+    [SerializeField] private int Damage = 1;
 
     [HideInInspector] public Transform PlayerTrans;
-    [SerializeField] private GameObject Projectile;
+
+    [SerializeField] private LayerMask PlayerLayer;
+    private BoxCollider2D Collider;
+    private ContactFilter2D CFilter;
+    List<Collider2D> Cols;
 
     void Start()
     {
-        StartCoroutine(Shoot());
+        Collider = GetComponent<BoxCollider2D>();
+        CFilter = new ContactFilter2D();
+        CFilter.SetLayerMask(PlayerLayer);
+        Cols = new List<Collider2D>();
     }
 
     void Update()
@@ -24,17 +31,13 @@ public class Enemy : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(transform.forward, Dir);
             transform.position += transform.up * Speed * Time.deltaTime;
         }
-    }
 
-    private IEnumerator Shoot()
-    {
-        while(true)
+        //Damage player
+        Collider.OverlapCollider(CFilter, Cols);
+        if(Cols.Count > 0)
         {
-            if(PlayerTrans)
-            {
-                Instantiate(Projectile, transform.position, transform.rotation);
-            }
-            yield return new WaitForSeconds(TimeBetweenShots);
+            Cols[0].GetComponent<Health>().UpdateHealth(-Damage);
+            Destroy(gameObject);
         }
     }
 }

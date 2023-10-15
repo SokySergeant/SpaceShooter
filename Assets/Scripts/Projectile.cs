@@ -4,8 +4,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Speed = 5f;
-    [SerializeField] private LayerMask EnemyLayer;
 
+    [SerializeField] private LayerMask EnemyLayer;
     private BoxCollider2D Collider;
     private ContactFilter2D CFilter;
     List<Collider2D> Cols;

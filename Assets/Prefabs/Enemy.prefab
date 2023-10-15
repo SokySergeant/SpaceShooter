@@ -171,6 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eff82730c49c05439a586088ec1a7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeBetweenShots: 1
+  Speed: 2
+  Damage: 1
   PlayerTrans: {fileID: 0}
-  Projectile: {fileID: 652259241975215063, guid: 332fe71b597b560479736bde194d03cb, type: 3}
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
