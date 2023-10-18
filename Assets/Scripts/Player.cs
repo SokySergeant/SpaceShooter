@@ -5,9 +5,11 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D Rb;
     [SerializeField] private float Speed = 1f;
-    [SerializeField] private GameObject Projectile;
 
     private Health Health;
+
+    public delegate void SpawnProjectileDelegate(Vector3 Pos, Quaternion Rot);
+    public SpawnProjectileDelegate SpawnProjectile;
 
     void Start()
     {
@@ -31,7 +33,10 @@ public class Player : MonoBehaviour
     {
         if(Ctx.started)
         {
-            Instantiate(Projectile, transform.position, transform.rotation);
+            if(SpawnProjectile != null)
+            {
+                SpawnProjectile(transform.position, transform.rotation);
+            }
         }
     }
 

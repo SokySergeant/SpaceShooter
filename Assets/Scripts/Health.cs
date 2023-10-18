@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Slider HealthSlider;
     [SerializeField] private GameObject GameOverMenu;
 
-    public bool Godmode = false;
+    public bool Godmode = true;
 
     void Start()
     {
