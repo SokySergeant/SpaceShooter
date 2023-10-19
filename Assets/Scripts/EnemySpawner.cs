@@ -44,9 +44,12 @@ public class EnemySpawner : MonoBehaviour
             //Spawn enemies while the player is still alive
             if(PlayerTrans)
             {
-                Vector3 RandomDir = Random.insideUnitCircle.normalized;
-                GameObject TempEnemy = Instantiate(Enemy, transform.position + RandomDir * SpawnRadius, Quaternion.identity);
-                TempEnemy.GetComponent<Enemy>().PlayerTrans = PlayerTrans;
+                for(int i = 0; i < SpawnAmount; i++)
+                {
+                    Vector3 RandomDir = Random.insideUnitCircle.normalized;
+                    GameObject TempEnemy = Instantiate(Enemy, transform.position + RandomDir * SpawnRadius, Quaternion.identity);
+                    TempEnemy.GetComponent<Enemy>().PlayerTrans = PlayerTrans;
+                }
             }
 
             //Increase how fast enemies spawn

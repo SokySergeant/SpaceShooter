@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         if(Cols.Count > 0)
         {
             Cols[0].GetComponent<Health>().UpdateHealth(-Damage);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }
