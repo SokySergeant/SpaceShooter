@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Transforms;
 using UnityEngine;
 
 public partial class EnemySetTargetSystemBase : SystemBase
@@ -11,7 +8,7 @@ public partial class EnemySetTargetSystemBase : SystemBase
 
     protected override void OnStartRunning()
     {
-        PlayerTrans = GameObject.Find("Player").transform;
+        PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     protected override void OnUpdate()

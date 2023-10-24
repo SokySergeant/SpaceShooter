@@ -9,39 +9,7 @@ public class Enemy : MonoBehaviour
     public float Speed = 2f;
     public int Damage = 1;
     public float3 TargetPos;
-
-    [SerializeField] private LayerMask PlayerLayer;
-    private BoxCollider2D Collider;
-    private ContactFilter2D CFilter;
-    List<Collider2D> Cols;
-
-    void Start()
-    {
-        Collider = GetComponent<BoxCollider2D>();
-        CFilter = new ContactFilter2D();
-        CFilter.SetLayerMask(PlayerLayer);
-        Cols = new List<Collider2D>();
-    }
-
-    void Update()
-    {
-        //Rotate and move towards player
-        /*
-        if(PlayerTrans)
-        {
-            Vector2 Dir = PlayerTrans.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(transform.forward, Dir);
-            transform.position += transform.up * Speed * Time.deltaTime;
-        }*/
-
-        //Damage player
-        Collider.OverlapCollider(CFilter, Cols);
-        if(Cols.Count > 0)
-        {
-            Cols[0].GetComponent<Health>().UpdateHealth(-Damage);
-            Destroy(gameObject);
-        }
-    }
+    public float HitboxSize = 0.5f;
 }
 
 public class EnemyBaker : Baker<Enemy>
@@ -52,8 +20,9 @@ public class EnemyBaker : Baker<Enemy>
         {
             Speed = authoring.Speed,
             Damage = authoring.Damage,
-            TargetPos = authoring.TargetPos
-        }) ;
+            TargetPos = authoring.TargetPos,
+            HitboxSize = authoring.HitboxSize
+        });
     }
 }
 
@@ -62,6 +31,7 @@ public struct EnemyData : IComponentData
     public float Speed;
     public int Damage;
     public float3 TargetPos;
+    public float HitboxSize;
 }
 
 public readonly partial struct EnemyAspect : IAspect
