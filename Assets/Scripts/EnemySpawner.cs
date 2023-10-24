@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     Vector3 RandomDir = Random.insideUnitCircle.normalized;
                     GameObject TempEnemy = Instantiate(Enemy, transform.position + RandomDir * SpawnRadius, Quaternion.identity);
-                    TempEnemy.GetComponent<Enemy>().PlayerTrans = PlayerTrans;
+                    //TempEnemy.GetComponent<Enemy>().PlayerTrans = PlayerTrans;
                 }
             }
         } else
@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     Vector3 RandomDir = Random.insideUnitCircle.normalized;
                     GameObject TempEnemy = Instantiate(Enemy, transform.position + RandomDir * SpawnRadius, Quaternion.identity);
-                    TempEnemy.GetComponent<Enemy>().PlayerTrans = PlayerTrans;
+                    //TempEnemy.GetComponent<Enemy>().PlayerTrans = PlayerTrans;
                 }
             }
 
