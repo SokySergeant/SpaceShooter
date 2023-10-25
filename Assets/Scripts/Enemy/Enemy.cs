@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 {
     public float Speed = 2f;
     public int Damage = 1;
-    public float3 TargetPos;
     public float HitboxSize = 0.2f;
 }
 
@@ -19,7 +18,6 @@ public class EnemyBaker : Baker<Enemy>
         {
             Speed = authoring.Speed,
             Damage = authoring.Damage,
-            TargetPos = authoring.TargetPos,
             HitboxSize = authoring.HitboxSize
         });
     }
