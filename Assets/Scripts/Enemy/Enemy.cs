@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -9,7 +8,7 @@ public class Enemy : MonoBehaviour
     public float Speed = 2f;
     public int Damage = 1;
     public float3 TargetPos;
-    public float HitboxSize = 0.5f;
+    public float HitboxSize = 0.2f;
 }
 
 public class EnemyBaker : Baker<Enemy>
@@ -36,7 +35,7 @@ public struct EnemyData : IComponentData
 
 public readonly partial struct EnemyAspect : IAspect
 {
-    private readonly Entity Entity;
+    public readonly Entity Entity;
 
     private readonly RefRW<LocalTransform> Transform;
     private readonly RefRO<EnemyData> Data;

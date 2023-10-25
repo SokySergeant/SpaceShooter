@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -8,22 +7,32 @@ using UnityEngine;
 public partial class EnemyCollisionSystemBase : SystemBase
 {
     Transform PlayerTrans;
+    Health PlayerHealth;
+    EntityCommandBuffer CommandBuffer;
 
-    protected override void OnStartRunning()
+    protected override void OnCreate()
     {
         PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        PlayerHealth = PlayerTrans.GetComponent<Health>();
     }
 
     protected override void OnUpdate()
     {
-        float3 Pos = PlayerTrans.position;
-        Entities.ForEach((in LocalTransform Transform, in EnemyData Data) =>
+        //Create entity command buffer
+        CommandBuffer = new EntityCommandBuffer(Allocator.Temp);
+
+        //Check collision with player. WithoutBurst() required because of the entity command buffer
+        Entities.WithoutBurst().ForEach((Entity Entity, in LocalTransform Transform, in EnemyData Data) =>
         {
-            float Dist = math.distance(Pos, Transform.Position);
-            if(Dist <= Data.HitboxSize)
+            float Dist = math.distance(PlayerTrans.position, Transform.Position);
+            if(Dist <= Data.HitboxSize) //Collision happened
             {
-                //EntityCommandBuffer.DestroyEntity();
+                CommandBuffer.DestroyEntity(Entity);
+                PlayerHealth.UpdateHealth(-Data.Damage);
             }
-        }).ScheduleParallel();
+        }).Run();
+
+        //Destroy all enemies that collided with player
+        CommandBuffer.Playback(EntityManager);
     }
 }

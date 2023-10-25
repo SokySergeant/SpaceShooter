@@ -4,8 +4,6 @@ using Unity.Burst;
 [BurstCompile]
 public partial struct EnemyMovingSystem : ISystem
 {
-    Entity Player;
-
     [BurstCompile]
     public void OnUpdate(ref SystemState State)
     {
