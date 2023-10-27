@@ -1,11 +1,11 @@
-using Unity.Burst;
 using Unity.Entities;
+using Unity.Burst;
 
 [BurstCompile]
 public partial struct ProjectileMovingSystem : ISystem
 {
     [BurstCompile]
-    public void Update(ref SystemState State)
+    public void OnUpdate(ref SystemState State)
     {
         new ProjectileMovingJob
         {
@@ -20,8 +20,8 @@ public partial struct ProjectileMovingJob : IJobEntity
     public float DeltaTime;
 
     [BurstCompile]
-    private void Execute(ProjectileAspect Projectile)
+    private void Execute(ProjectileAspect Proj)
     {
-        Projectile.Move(DeltaTime);
+        Proj.Move(DeltaTime);
     }
 }
