@@ -7,6 +7,7 @@ using Unity.Transforms;
 public class Projectile : MonoBehaviour
 {
     public float Speed = 5f;
+    public float Range = 10f;
 
     void Update()
     {
@@ -23,7 +24,8 @@ public class ProjectileBaker : Baker<Projectile>
     {
         AddComponent(GetEntity(TransformUsageFlags.Dynamic), new ProjectileData 
         {
-            Speed = authoring.Speed
+            Speed = authoring.Speed,
+            Range = authoring.Range
         });
     }
 }
@@ -31,6 +33,7 @@ public class ProjectileBaker : Baker<Projectile>
 public struct ProjectileData : IComponentData
 {
     public float Speed;
+    public float Range;
 }
 
 public readonly partial struct ProjectileAspect : IAspect
