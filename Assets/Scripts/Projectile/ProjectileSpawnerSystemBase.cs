@@ -20,6 +20,7 @@ public partial class ProjectileSpawnerSystemBase : SystemBase
         {
             Entity SpawnedEntity = EntityManager.Instantiate(ProjectileSpawnerData.ValueRO.ProjectileEntity);
             EntityManager.SetComponentData(SpawnedEntity, new LocalTransform { Position = SpawnPos, Rotation = SpawnRot, Scale = 2f });
+            EntityManager.SetComponentData(SpawnedEntity, new ProjectileStartPosData { StartPos = SpawnPos });
         }
     }
 }

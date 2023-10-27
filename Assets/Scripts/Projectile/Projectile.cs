@@ -1,6 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 using Unity.Transforms;
+using Unity.Mathematics;
 
 public class Projectile : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class ProjectileBaker : Baker<Projectile>
             Speed = authoring.Speed,
             Range = authoring.Range
         });
+
+        AddComponent(GetEntity(TransformUsageFlags.Dynamic), new ProjectileStartPosData
+        {
+            StartPos = new float3(0, 0, 0)
+        });
     }
 }
 
@@ -26,8 +32,15 @@ public struct ProjectileData : IComponentData
     public float Range;
 }
 
+public struct ProjectileStartPosData : IComponentData
+{
+    public float3 StartPos;
+}
+
 public readonly partial struct ProjectileAspect : IAspect
 {
+    public readonly Entity ProjectileEntity;
+
     private readonly RefRW<LocalTransform> Transform;
     private readonly RefRO<ProjectileData> Data;
 
