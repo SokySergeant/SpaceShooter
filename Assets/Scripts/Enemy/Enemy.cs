@@ -33,8 +33,6 @@ public struct EnemyData : IComponentData
 
 public readonly partial struct EnemyAspect : IAspect
 {
-    public readonly Entity Entity;
-
     private readonly RefRW<LocalTransform> Transform;
     private readonly RefRO<EnemyData> Data;
 

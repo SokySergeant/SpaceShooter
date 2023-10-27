@@ -8,14 +8,6 @@ public class Projectile : MonoBehaviour
 {
     public float Speed = 5f;
     public float Range = 10f;
-
-    void Update()
-    {
-        //Move
-        //transform.position += transform.up * Speed * Time.deltaTime;
-
-        //Kill overlapping enemy
-    }
 }
 
 public class ProjectileBaker : Baker<Projectile> 
@@ -38,8 +30,6 @@ public struct ProjectileData : IComponentData
 
 public readonly partial struct ProjectileAspect : IAspect
 {
-    public readonly Entity Entity;
-
     private readonly RefRW<LocalTransform> Transform;
     private readonly RefRO<ProjectileData> Data;
 
