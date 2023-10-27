@@ -1,4 +1,3 @@
-using System.Collections;
 using Unity.Entities;
 using UnityEngine;
 
@@ -12,29 +11,6 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Enemy;
 
     public int SpawnAmount = 1;
-
-    void Start()
-    {
-        //StartCoroutine(SpawnEnemies());
-    }
-
-    private IEnumerator SpawnEnemies()
-    {
-        yield return null;
-        /*
-        while(true)
-        {
-            //Increase how fast enemies spawn
-            if(CurrentTimeBetweenSpawns - SpawnIncreaseRate > 0f)
-            {
-                CurrentTimeBetweenSpawns -= SpawnIncreaseRate;
-            }
-            float CalculatedTime = CurrentTimeBetweenSpawns + (Random.Range(-1f, 1f) * TimeDeviationBetweenSpawns) * (CurrentTimeBetweenSpawns / TimeBetweenSpawns);
-
-            yield return new WaitForSeconds(CalculatedTime);
-        }
-        */
-    }
 }
 
 public class EnemySpawnerBaker : Baker<EnemySpawner>
