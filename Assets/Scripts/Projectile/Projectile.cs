@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
-using Unity.Mathematics;
 using Unity.Transforms;
 
 public class Projectile : MonoBehaviour

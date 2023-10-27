@@ -1,8 +1,3 @@
-using Unity.Entities;
-using Unity.Entities.Conversion;
-using Unity.Entities.Editor;
-using Unity.Mathematics;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
