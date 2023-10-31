@@ -6,13 +6,10 @@ public partial class EnemySetTargetSystemBase : SystemBase
 {
     Transform PlayerTrans;
 
-    protected override void OnStartRunning()
-    {
-        PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
     protected override void OnUpdate()
     {
+        if(PlayerTrans == null) PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+
         float3 Pos = PlayerTrans.position;
         Entities.ForEach((ref EnemyData Data) =>
         {

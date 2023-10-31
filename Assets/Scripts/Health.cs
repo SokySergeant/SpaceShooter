@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -8,17 +9,14 @@ public class Health : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text GodmodeText;
     [SerializeField] private Slider HealthSlider;
-    [SerializeField] private GameObject GameOverMenu;
 
-    public bool Godmode = true;
+    public bool Godmode = false;
 
     void Start()
     {
         CurrentHealth = MaxHeath;
         HealthSlider.maxValue = MaxHeath;
         HealthSlider.value = CurrentHealth;
-
-        Time.timeScale = 1f;
     }
 
     public void UpdateHealth(int Hp)
@@ -35,8 +33,8 @@ public class Health : MonoBehaviour
         //death
         if(CurrentHealth == 0)
         {
+            SceneManager.LoadScene("MainScene");
             Time.timeScale = 0f;
-            GameOverMenu.SetActive(true);
             gameObject.SetActive(false);
         }
     }

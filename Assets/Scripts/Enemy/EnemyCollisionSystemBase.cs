@@ -10,14 +10,11 @@ public partial class EnemyCollisionSystemBase : SystemBase
     Health PlayerHealth;
     EntityCommandBuffer CommandBuffer;
 
-    protected override void OnCreate()
-    {
-        PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;
-        PlayerHealth = PlayerTrans.GetComponent<Health>();
-    }
-
     protected override void OnUpdate()
     {
+        if(PlayerTrans == null) PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        if(PlayerHealth == null) PlayerHealth = PlayerTrans.GetComponent<Health>();
+
         //Create entity command buffer
         CommandBuffer = new EntityCommandBuffer(Allocator.Temp);
 

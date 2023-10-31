@@ -6,13 +6,14 @@ public partial class ProjectileSpawnerSystemBase : SystemBase
 {
     Player Player;
 
-    protected override void OnCreate()
+    protected override void OnUpdate() 
     {
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        Player.SpawnProjectile += SpawnProjectile;
+        if(Player == null)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            Player.SpawnProjectile += SpawnProjectile;
+        }
     }
-
-    protected override void OnUpdate() {}
 
     public void SpawnProjectile(Vector3 SpawnPos, Quaternion SpawnRot)
     {

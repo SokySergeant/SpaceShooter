@@ -17,11 +17,11 @@ public class HealthpackSpawner : MonoBehaviour
     {
         while(true)
         {
+            yield return new WaitForSeconds(TimeBetweenSpawns + Random.Range(-1f, 1f) * TimeDeviationBetweenSpawns);
+
             float RandX = Random.Range(-8.9f, 8.9f);
             float RandY = Random.Range(-5f, 5f);
             Instantiate(Healthpack, new Vector2(RandX, RandY), Quaternion.identity);
-
-            yield return new WaitForSeconds(TimeBetweenSpawns + Random.Range(-1f, 1f) * TimeDeviationBetweenSpawns);
         }
     }
 }

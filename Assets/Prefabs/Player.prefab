@@ -268,7 +268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  Projectile: {fileID: 652259241975215063, guid: a1cc56a344afaea46a88e4d33a6104e7, type: 3}
 --- !u!114 &3181014889434842955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,5 +284,4 @@ MonoBehaviour:
   CurrentHealth: 0
   GodmodeText: {fileID: 0}
   HealthSlider: {fileID: 0}
-  GameOverMenu: {fileID: 0}
-  Godmode: 1
+  Godmode: 0

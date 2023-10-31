@@ -1,10 +1,20 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void LoadScene(string Scene)
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject PlayerHUD;
+
+    private void Start()
     {
-        SceneManager.LoadScene(Scene);
+        Time.timeScale = 0f;
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1f;
+
+        MainMenu.SetActive(false);
+        PlayerHUD.SetActive(true);
     }
 }
