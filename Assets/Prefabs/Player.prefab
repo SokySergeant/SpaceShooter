@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3181014889434842955}
   m_Layer: 11
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &3233346902545890109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e7994c383d74648a682ff00b582da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 1
   Projectile: {fileID: 652259241975215063, guid: a1cc56a344afaea46a88e4d33a6104e7, type: 3}
 --- !u!114 &3181014889434842955
 MonoBehaviour:
@@ -283,7 +283,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHeath: 10
   CurrentHealth: 0
-  GodmodeText: {fileID: 0}
   HealthSlider: {fileID: 0}
-  GameOverMenu: {fileID: 0}
-  Godmode: 1
